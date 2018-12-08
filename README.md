@@ -52,8 +52,46 @@ create a asny method for sending and reciving messages
 public asyn Task <method name> (<datatype><args>){}
 ```
 
-for sending messages ->
+#####for sending messages client side->
+in cs file
 ```sh
-    await Clients.All.SendAsync("<Recived Message>",<args>)
+    await Clients.All.SendAsync("<name of connection>",<args>)
 ```
 
+#####for reciving messages client side
+in js file
+the name of connection used is the same which is used in the cs file as it is reciving messages from server
+```sh
+connection.on("<name of connection>")
+```
+
+#### connecting it with js
+- navigate to wwwroot/js/site.js
+
+in site.js
+```sh
+const connection = new SignalR.HubConnecction.Builder()
+    .WithUrl("/<endpoint same as in startup.cs>")
+    .build()
+
+    //code for sending and reciving messages
+```
+
+for reciving messages ie server->client
+
+```sh
+connstion.on(("name of connection same as startup.cs file"),(<args>)=>{
+    //do something
+    //code here contains the code to be done after the message is recived
+})
+```
+
+for sending messages ie client->start
+
+```sh
+    connection.invoke("SendMessage", user, message).catch(err => {
+        console.error(err.toString());
+        event.preventDefault();
+    })
+})
+```
