@@ -70,10 +70,9 @@ connection.on("<name of connection>")
 
 in site.js
 ```sh
-const connection = new SignalR.HubConnecction.Builder()
-    .WithUrl("/<endpoint same as in startup.cs>")
-    .build()
-
+const connection = new signalR.HubConnecction.build()
+    .withUrl("/<endpoint same as in startup.cs>")
+    .build();
     //code for sending and reciving messages
 ```
 

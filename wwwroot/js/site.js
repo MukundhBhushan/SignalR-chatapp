@@ -1,9 +1,9 @@
-﻿const connection = new SignalR.HubConnecction.Builder()
-    .WithUrl("/chathub")
+﻿const connection = new signalR.HubConnectionBuilder()
+    .withUrl("/chathub")
     .build();
 
 
-
+ 
 //sending messages
 document.getElementById("submitBtn").addEventListener("click", event => {
     const user = document.getElementById("name").value;
@@ -22,7 +22,7 @@ connection.on(("ReciveMessage"), (user, message) => {
     var mess = `${user}+${message}`;
     const li = document.createElement("li");
     li.textContent = mess;
-    getElementById("messagelist").appendChild(li);
+    document.getElementById("messagelist").appendChild(li);
 
 });
 
@@ -30,4 +30,3 @@ connection.start().catch(err => {
     console.error(err);
 
 });
-
